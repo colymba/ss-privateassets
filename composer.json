@@ -1,5 +1,5 @@
 {
-	"name": "colymba/ss-private-assets",
+	"name": "colymba/silverstripe-private-assets",
 	"type": "silverstripe-module",
 	"description": "SilverStripe 3 module making (some) assets only accessible to logged in users.",
 	"homepage": "https://github.com/colymba/ss-privateassets",
