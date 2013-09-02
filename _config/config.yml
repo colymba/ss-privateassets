@@ -1,0 +1,7 @@
+---
+Name: privateassets
+After: 'framework/*','cms/*'
+---
+Director:
+  rules:
+    'privateassets': 'PrivateAssetsController'
