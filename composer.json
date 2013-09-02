@@ -1,0 +1,22 @@
+{
+	"name": "colymba/ss-private-assets",
+	"type": "silverstripe-module",
+	"description": "SilverStripe 3 module making (some) assets only accessible to logged in users.",
+	"homepage": "https://github.com/colymba/ss-privateassets",
+	"keywords": ["silverstripe", "assets", "private", "secure", "secure file", "secure assets", "private file", "private assets"],
+	"license": "BSD Simplified",
+	"authors": [{
+			"name": "Thierry Francois",
+			"homepage": "http://colymba.com"
+    },{
+      "name": "GitHub contributors",
+      "homepage": "https://github.com/colymba/ss-privateassets/contributors"
+  }],
+  "repositories": [{
+    "type": "vcs",
+    "url": "git@github.com:colymba/ss-privateassets.git"
+  }],
+	"require": {
+    "silverstripe/framework": "~3.1"
+	}
+}
