@@ -29,21 +29,35 @@ class PrivateAssetsController extends Controller
   }
 
   /**
-   * Serve file to user
-   * @return SS_HTTPResponse The file to be downloaded
+   * Output file to user.
+   * Send file content to browser for download progressively.
    */
   public function index()
   {
-    $file = $this->request->getVar('file');
+    $file          = $this->request->getVar('file');
     $fileAssetPath = substr($file, stripos($file, 'assets'));    
-    $fileObj = File::get()->filter(array('Filename' => $fileAssetPath))->first();
+    $fileObj       = File::get()->filter(array('Filename' => $fileAssetPath))->first();
 
     if ( $fileObj )
     {
-     $data = file_get_contents( $fileObj->getFullPath() );
-     $name = $fileObj->getFilename();
-     $response = SS_HTTPRequest::send_file($data, $name);
-     return $response;
+      $filePath = $fileObj->getFullPath();
+      $mimeType = HTTP::get_mime_type($filePath);
+      $name     = $fileObj->Name;
+     
+      header("Content-Type: $mimeType");     
+      header("Content-Disposition: attachment; filename=\"$name\"");     
+      header("Pragma: public");
+      header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+
+      set_time_limit(0);
+      $file = @fopen($filePath,"rb");
+      while(!feof($file))
+      {
+        print(@fread($file, 1024*8));
+        ob_flush();
+        flush();
+      }
+      exit;
     }
     else {
       $this->httpError(404);
